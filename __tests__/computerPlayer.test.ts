@@ -1,0 +1,36 @@
+import computerPlayer from "../opponent/computerPlayer";
+import Board from "../pieces/board";
+import BoardRectangle from "../pieces/boardRectangle";
+
+test('type can be set', () => {
+  const board = new Board();
+  const crossPiece1 = new BoardRectangle(0,0,0,0);
+  const crossPiece2 = new BoardRectangle(0,0,0,1);
+  const crossPiece3 = new BoardRectangle(0,0,0,2);
+  const circlePiece1 = new BoardRectangle(0,0,1,0);
+  const circlePiece2 = new BoardRectangle(0,0,1,1);
+  const circlePiece3 = new BoardRectangle(0,0,1,2);
+  const circlePiece4 = new BoardRectangle(0,0,2,0);
+  const circlePiece5 = new BoardRectangle(0,0,2,1);
+  crossPiece1.type = 'cross';
+  crossPiece2.type = 'cross';
+  crossPiece3.type = 'cross';
+  circlePiece1.type = 'circle';
+  circlePiece2.type = 'circle';
+  circlePiece3.type = 'circle';
+  circlePiece4.type = 'circle';
+  circlePiece5.type = 'circle';
+  board.insertPiece(crossPiece1);
+  board.insertPiece(crossPiece2);
+  board.insertPiece(crossPiece3);
+  board.insertPiece(circlePiece1);
+  board.insertPiece(circlePiece2);
+  board.insertPiece(circlePiece3);
+  board.insertPiece(circlePiece4);
+  board.insertPiece(circlePiece5);
+  const AI = new computerPlayer('circle', board);
+  const returnedBoard = AI.makeMove();
+  expect(returnedBoard).toBeInstanceOf(BoardRectangle);
+  expect(returnedBoard.xPosition).toBe(2);
+  expect(returnedBoard.yPosition).toBe(2);
+});
